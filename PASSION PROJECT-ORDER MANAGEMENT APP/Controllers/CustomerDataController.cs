@@ -16,15 +16,17 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/CustomerData
-        public IQueryable<Customer> GetCustomers()
+        // GET: api/CustomerData/ListCustomers
+        [HttpGet]
+        public IQueryable<Customer> ListCustomers()
         {
             return db.Customers;
         }
 
-        // GET: api/CustomerData/5
+        // GET: api/CustomerData/FindCustomers/5
         [ResponseType(typeof(Customer))]
-        public IHttpActionResult GetCustomer(int id)
+        [HttpGet]
+        public IHttpActionResult FindCustomer(int id)
         {
             Customer customer = db.Customers.Find(id);
             if (customer == null)
@@ -35,9 +37,10 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             return Ok(customer);
         }
 
-        // PUT: api/CustomerData/5
+        // PUT: api/CustomerData/UpdateCustomer/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCustomer(int id, Customer customer)
+        [HttpPost]
+        public IHttpActionResult UpdateCustomer(int id, Customer customer)
         {
             if (!ModelState.IsValid)
             {
@@ -70,9 +73,10 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/CustomerData
+        // POST: api/CustomerData/AddCustomer
         [ResponseType(typeof(Customer))]
-        public IHttpActionResult PostCustomer(Customer customer)
+        [HttpPost]
+        public IHttpActionResult AddCustomer(Customer customer)
         {
             if (!ModelState.IsValid)
             {
@@ -85,8 +89,9 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             return CreatedAtRoute("DefaultApi", new { id = customer.Customer_id }, customer);
         }
 
-        // DELETE: api/CustomerData/5
+        // DELETE: api/CustomerData/DeleteCustomer/5
         [ResponseType(typeof(Customer))]
+        [HttpPost]
         public IHttpActionResult DeleteCustomer(int id)
         {
             Customer customer = db.Customers.Find(id);
