@@ -8,51 +8,53 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Mvc;
 using PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models;
 
 namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
 {
-    public class CustomerDataController : ApiController
+    public class MenuDataController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/CustomerData/ListCustomers
-        [HttpGet]
-        public IQueryable<Customer> ListCustomers()
+        // GET: api/MenuData/ListMenu
+        [HttpGet]   
+        public IQueryable<Menu> ListMenu()
         {
-            return db.Customers;
+            return db.Menu;
         }
 
-        // GET: api/CustomerData/FindCustomer/5
-        [ResponseType(typeof(Customer))]
+        // GET: api/MenuData/FindMenu/5
+        [ResponseType(typeof(Menu))]
         [HttpGet]
-        public IHttpActionResult FindCustomer(int id)
+        
+        public IHttpActionResult FindMenu(int id)
         {
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            Menu menu = db.Menu.Find(id);
+            if (menu == null)
             {
                 return NotFound();
             }
 
-            return Ok(customer);
+            return Ok(menu);
         }
 
-        // POST: api/CustomerData/UpdateCustomer/5
+        // POST: api/MenuData/UpdateMenu/5
         [ResponseType(typeof(void))]
         [HttpPost]
-        public IHttpActionResult UpdateCustomer(int id, Customer customer)
+        public IHttpActionResult UpdateMenu(int id, Menu menu)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != customer.Customer_id)
+            if (id != menu.Menu_id)
             {
                 return BadRequest();
             }
 
-            db.Entry(customer).State = EntityState.Modified;
+            db.Entry(menu).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +62,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CustomerExists(id))
+                if (!MenuExists(id))
                 {
                     return NotFound();
                 }
@@ -73,37 +75,37 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/CustomerData/AddCustomer
-        [ResponseType(typeof(Customer))]
+        // POST: api/MenuData/AddMenu
+        [ResponseType(typeof(Menu))]
         [HttpPost]
-        public IHttpActionResult AddCustomer(Customer customer)
+        public IHttpActionResult AddMenu(Menu menu)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Customers.Add(customer);
+            db.Menu.Add(menu);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = customer.Customer_id }, customer);
+            return CreatedAtRoute("DefaultApi", new { id = menu.Menu_id }, menu);
         }
 
-        // DELETE: api/CustomerData/DeleteCustomer/5
-        [ResponseType(typeof(Customer))]
+        // POST: api/MenuData/DeleteMenu/5
+        [ResponseType(typeof(Menu))]
         [HttpPost]
-        public IHttpActionResult DeleteCustomer(int id)
+        public IHttpActionResult DeleteMenu(int id)
         {
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            Menu menu = db.Menu.Find(id);
+            if (menu == null)
             {
                 return NotFound();
             }
 
-            db.Customers.Remove(customer);
+            db.Menu.Remove(menu);
             db.SaveChanges();
 
-            return Ok(customer);
+            return Ok(menu);
         }
 
         protected override void Dispose(bool disposing)
@@ -115,9 +117,9 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             base.Dispose(disposing);
         }
 
-        private bool CustomerExists(int id)
+        private bool MenuExists(int id)
         {
-            return db.Customers.Count(e => e.Customer_id == id) > 0;
+            return db.Menu.Count(e => e.Menu_id == id) > 0;
         }
     }
 }
