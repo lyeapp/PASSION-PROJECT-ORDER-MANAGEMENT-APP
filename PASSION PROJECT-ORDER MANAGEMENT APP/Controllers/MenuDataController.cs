@@ -8,7 +8,6 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using System.Web.Mvc;
 using PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models;
 
 namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
@@ -105,7 +104,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             db.Menu.Remove(menu);
             db.SaveChanges();
 
-            return Ok(menu);
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

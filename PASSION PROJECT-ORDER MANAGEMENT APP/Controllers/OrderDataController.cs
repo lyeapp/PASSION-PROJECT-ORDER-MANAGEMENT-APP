@@ -46,13 +46,26 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
         [HttpGet]
         public IHttpActionResult FindOrder(int id)
         {
-            Order order = db.Orders.Find(id);
-            if (order == null)
+            Order Order = db.Orders.Find(id);
+            OrderDto OrderDto = new OrderDto()
+            {
+                Order_id = Order.Order_id,
+                Customer_id = Order.Customer_id,
+                Menu_id = Order.Menu_id,
+                Quantity = Order.Quantity,
+                Location = Order.Location,
+                Order_Date = Order.Order_Date,
+                Total_Price = Order.Total_Price,
+
+            };
+        
+       
+            if (Order == null)
             {
                 return NotFound();
             }
 
-            return Ok(order);
+            return Ok(OrderDto);
         }
 
         // POST: api/OrderData/UpdateOrder/5
@@ -121,7 +134,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             db.Orders.Remove(order);
             db.SaveChanges();
 
-            return Ok(order);
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

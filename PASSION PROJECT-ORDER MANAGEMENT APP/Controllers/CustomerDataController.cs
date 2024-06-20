@@ -89,7 +89,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             return CreatedAtRoute("DefaultApi", new { id = customer.Customer_id }, customer);
         }
 
-        // DELETE: api/CustomerData/DeleteCustomer/5
+        // POST: api/CustomerData/DeleteCustomer/5
         [ResponseType(typeof(Customer))]
         [HttpPost]
         public IHttpActionResult DeleteCustomer(int id)
@@ -103,7 +103,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             db.Customers.Remove(customer);
             db.SaveChanges();
 
-            return Ok(customer);
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)
