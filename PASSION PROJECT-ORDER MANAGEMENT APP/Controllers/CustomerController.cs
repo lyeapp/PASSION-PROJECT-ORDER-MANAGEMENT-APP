@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Net.Http;
 using System.Diagnostics;
 using PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models;
+using System.Web.Script.Serialization;
 
 namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
 {
@@ -64,18 +65,20 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
 
         // POST: Customer/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Customer customer)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            Debug.WriteLine("the json payload is:");
+            //Debug.WriteLine(customer.Customer_Name);
+            //objective:add a new customer into our system using the API
+            //curl -H "Content-Type:application/json" -d @customer.json https://localhost:44362/api/customerdata/addcustomer
+            string url = "addcustomer";
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            string jsonpayload = jss.Serialize(customer);
+
+            Debug.WriteLine(jsonpayload);
+
+            return RedirectToAction("List");
         }
 
         // GET: Customer/Edit/5
