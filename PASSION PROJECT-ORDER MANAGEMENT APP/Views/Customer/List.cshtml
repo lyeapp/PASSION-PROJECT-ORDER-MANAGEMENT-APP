@@ -1,0 +1,12 @@
+﻿@model IEnumerable<PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models.Customer>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+@foreach(var customer in Model)
+            {
+                <h2><a href="/Customer/Details/@customer.Customer_id">@customer.Customer_Name</a></h2>
+                <div>@customer.Address</div>
+            }
+

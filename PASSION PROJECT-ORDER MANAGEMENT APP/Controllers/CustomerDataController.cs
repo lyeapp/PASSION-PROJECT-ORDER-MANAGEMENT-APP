@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models;
+using System.Diagnostics;
 
 namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
 {
@@ -42,13 +43,18 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
         [HttpPost]
         public IHttpActionResult UpdateCustomer(int id, Customer customer)
         {
+            Debug.WriteLine("I have reached the update customer method!");
             if (!ModelState.IsValid)
             {
+                Debug.WriteLine("Model State is invalid");
                 return BadRequest(ModelState);
             }
 
             if (id != customer.Customer_id)
             {
+                Debug.WriteLine("ID mismatch");
+                Debug.WriteLine("GET parameter" + id);
+                Debug.WriteLine("POST parameter" + customer.Customer_id);
                 return BadRequest();
             }
 
@@ -62,6 +68,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             {
                 if (!CustomerExists(id))
                 {
+                    Debug.WriteLine("Customer not found");
                     return NotFound();
                 }
                 else
@@ -70,6 +77,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
                 }
             }
 
+            Debug.WriteLine("None of the conditions triggered");
             return StatusCode(HttpStatusCode.NoContent);
         }
 
