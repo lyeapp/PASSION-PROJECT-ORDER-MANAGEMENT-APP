@@ -307,6 +307,8 @@
     <Content Include="Views\Order\New.cshtml" />
     <Content Include="Views\Customer\DeleteConfirm.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Menu\DeleteConfirm.cshtml" />
+    <Content Include="Views\Menu\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

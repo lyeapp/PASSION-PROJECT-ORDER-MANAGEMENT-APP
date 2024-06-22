@@ -1,7 +1,17 @@
 ﻿
 @{
-    ViewBag.Title = "New";
+    ViewBag.Title = "Create";
 }
 
-<h2>New</h2>
+<h2>Create new Menu</h2>
+<form action="/Menu/Create" method="POST">
+    <div>
+        <label>Menu Name</label> <input type="text" name="Menu_Name" />
+    </div>
+   
+    <div>
+        <label>Menu Price</label> <input type="number" name="Menu_Price" />
+    </div>
+   
 
+</form>

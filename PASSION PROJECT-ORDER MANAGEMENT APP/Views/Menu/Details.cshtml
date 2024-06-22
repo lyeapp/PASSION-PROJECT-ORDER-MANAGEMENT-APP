@@ -1,7 +1,11 @@
-﻿
+﻿@model PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models.Menu
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "View";
 }
-
-<h2>Details</h2>
-
+<a href="/Menu/List">Go back to list</a>
+<br />
+<a href="/Menu/Edit/@Model.Menu_id">Update</a>
+<a style="color:#ab2020;" href="/Menu/DeleteConfirm/@Model.Menu_id">Delete</a>
+<br />
+<h2>@Model.Menu_Name</h2>
+<div>$: @Model.Menu_Price</div>

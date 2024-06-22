@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Menu</h2>
+<form action="/Menu/Update/@Model.Menu_id" method="POST">
+    <div style="display:none;">
+        @* Pass through the customer ID *@
+        <input type="text" name="Menu_id" value="@Model.Menu_id" />
+    </div>
+
+    <div>
+        <label>Menu Name:</label> <input type="text" name="Menu_Name" value="@Model.Menu_Name" />
+    </div>
+
+    <div>
+        <label>Menu Price:</label> <input type="number" name="Menu_Price" value="@Model.Menu_Price" />
+    </div>
+
+    <div>
+        <input type="submit" value="Update " />
+
+    </div>
+</form>
+

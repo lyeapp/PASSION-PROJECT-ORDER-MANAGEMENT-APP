@@ -1,0 +1,15 @@
+﻿
+﻿@model PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models.Menu
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this menu?</h2>
+<a href="/Menu/List">Cancel</a>
+<h2>@Model.Menu_id</h2>
+<div>Name: @Model.Menu_Name</div>
+<form action="/Menu/Delete/@Model.Menu_id" method="POST">
+    <input type="submit" value="Confirm Delete" />
+
+</form>

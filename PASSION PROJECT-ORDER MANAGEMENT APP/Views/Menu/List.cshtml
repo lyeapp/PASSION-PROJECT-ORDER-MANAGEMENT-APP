@@ -1,7 +1,14 @@
-﻿
+﻿@model IEnumerable<PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models.Menu>
 @{
     ViewBag.Title = "List";
 }
 
 <h2>List</h2>
+@foreach (var menu in Model)
+{
+    <h2><a href="/Menu/Details/@menu.Menu_id">@menu.Menu_Name</a></h2>
+    <div>@menu.Menu_Price</div>
+}
+
+
 
