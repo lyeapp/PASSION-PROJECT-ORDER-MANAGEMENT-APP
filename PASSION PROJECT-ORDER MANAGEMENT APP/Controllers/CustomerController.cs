@@ -116,20 +116,26 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
         [HttpPost]
         public ActionResult Update(int id, Customer customer)
         {
-            string url = "updatecustomer/" + id;
+            string url = "UpdateCustomer/" + id;
+         
+            
             string jsonpayload = jss.Serialize(customer);
+
+            Debug.WriteLine(jsonpayload);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
+
             HttpResponseMessage response = client.PostAsync(url, content).Result;
-            Debug.WriteLine(content);
+
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("List");
             }
             else
             {
-                return RedirectToAction("Error");
+                return RedirectToAction("Error"); ;
             }
+
         }
 
         // GET: Customer/DeleteConfirm/5
@@ -137,8 +143,8 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
         {
             string url = "findcustomer/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-            Customer selectedanimal = response.Content.ReadAsAsync<Customer>().Result;
-            return View(selectedanimal);
+            Customer selectedcustomer = response.Content.ReadAsAsync<Customer>().Result;
+            return View(selectedcustomer);
         }
 
         // POST: Customer/Delete/5
