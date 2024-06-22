@@ -13,6 +13,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
     public class CustomerController : Controller
     {
         private static readonly HttpClient client;
+        private JavaScriptSerializer jss = new JavaScriptSerializer();
         static CustomerController()
         {
             client = new HttpClient();
@@ -57,6 +58,14 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             return View(selectedcustomer);
         }
 
+        public ActionResult Error()
+        {
+
+            return View();
+        }
+
+      
+
         // GET: Customer/New
         public ActionResult New()
         {
@@ -77,51 +86,77 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             string jsonpayload = jss.Serialize(customer);
 
             Debug.WriteLine(jsonpayload);
+            HttpContent content =new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+           
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
 
-            return RedirectToAction("List");
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error"); ;
+            }
         }
 
         // GET: Customer/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            
+            string url = "findcustomer/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            Customer selectedcustomer = response.Content.ReadAsAsync<Customer>().Result;
+            
+            return View(selectedcustomer);
         }
 
-        // POST: Customer/Edit/5
+        // POST: Customer/Update/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Update(int id, Customer customer)
         {
-            try
+            string url = "updatecustomer/" + id;
+            string jsonpayload = jss.Serialize(customer);
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            Debug.WriteLine(content);
+            if (response.IsSuccessStatusCode)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                return RedirectToAction("List");
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("Error");
             }
         }
 
-        // GET: Customer/Delete/5
-        public ActionResult Delete(int id)
+        // GET: Customer/DeleteConfirm/5
+        public ActionResult DeleteConfirm(int id)
         {
-            return View();
+            string url = "findcustomer/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            Customer selectedanimal = response.Content.ReadAsAsync<Customer>().Result;
+            return View(selectedanimal);
         }
 
         // POST: Customer/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            string url = "deletecustomer/" + id;
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
             }
         }
     }

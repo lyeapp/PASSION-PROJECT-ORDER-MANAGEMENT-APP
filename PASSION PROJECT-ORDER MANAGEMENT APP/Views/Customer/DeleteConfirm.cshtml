@@ -1,0 +1,17 @@
+﻿
+
+
+﻿@model PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models.Customer
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this customer?</h2>
+<a href="/Customer/List">Cancel</a>
+<h2>@Model.Customer_id</h2>
+<div>weight: @Model.Address</div>
+<form action="/Customer/Delete/@Model.Customer_id" method="POST">
+    <input type="submit" value="Confirm Delete" />
+
+</form>

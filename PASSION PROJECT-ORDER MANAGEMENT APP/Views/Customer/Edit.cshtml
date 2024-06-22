@@ -1,0 +1,39 @@
+﻿
+
+﻿@model PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models.Customer
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Customer</h2>
+<form action="/Customer/Update/@Model.Customer_id" method="POST">
+    <div style="display:none;">
+        @* Pass through the customer ID *@
+        <input type="text" name="Customer_id" value="@Model.Customer_id" />
+    </div>
+    <div>
+        <label>Name:</label> <input type="text" name="Customer_Name" value="@Model.Customer_Name" />
+    </div>
+    <div>
+        <label>Username</label> <input type="text" name="Username" value="@Model.Username" />
+    </div>
+    <div>
+        <label>Password</label> <input type="text" name="Password" value="@Model.Password" />
+    </div>
+    <div>
+        <label>Address:</label> <input type="text" name="Address" value="@Model.Address" />
+    </div>
+    <div>
+        <label>Phone_no</label> <input type="number" name="Phone_no" value="@Model.Phone_no" />
+    </div>
+    <div>
+        <label>Email</label> <input type="text" name="Email" value="@Model.Email" />
+    </div>
+   
+    <div>
+        <input type="submit" value="Update " />
+
+    </div>
+</form>
+

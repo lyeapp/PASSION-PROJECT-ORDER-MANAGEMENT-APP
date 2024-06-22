@@ -3,6 +3,10 @@
     ViewBag.Title = "View";
 }
 <a href="/Customer/List">Go back to list</a>
+<br />
+<a href="/Customer/Edit/@Model.Customer_id">Update</a>
+<a style="color:#ab2020;" href="/Customer/DeleteConfirm/@Model.Customer_id">Delete</a>
+<br />
 <h2>@Model.Customer_id</h2>
 <div>address: @Model.Address</div>
 
