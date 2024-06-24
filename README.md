@@ -29,6 +29,11 @@ This application aims to streamline the ordering process, reduce errors, and enh
 - **Database:** Microsoft SQL Server
 - **Tools and Libraries:** Visual Studio
 
+## Challenges
+One of the significant challenges encountered in the development of the Bakery Order Management App was managing and retrieving data using foreign keys. 
+This issue primarily arose due to the interrelated nature of our database tables: Orders, Customers, and Menu.
+I solved this issue by ORM Tools: Utilizing Object-Relational Mapping (ORM) tools like Entity Framework simplified the process 
+
 ## Database Schema
 ### Orders
 - **OrderID:** Unique identifier for each order
@@ -37,11 +42,6 @@ This application aims to streamline the ordering process, reduce errors, and enh
 - **OrderDate:** Date and time the order was placed
 - **Quantity:** Number of items ordered
 - **TotalPrice:** Total price of the order
-
-## Challenges
-One of the significant challenges encountered in the development of the Bakery Order Management App was managing and retrieving data using foreign keys. 
-This issue primarily arose due to the interrelated nature of our database tables: Orders, Customers, and Menu.
-I solved this issue by ORM Tools: Utilizing Object-Relational Mapping (ORM) tools like Entity Framework simplified the process 
 
 ### Customers
 - **CustomerID:** Unique identifier for each customer
