@@ -17,6 +17,16 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /// <summary>
+        /// Returns all menu in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all menu in the database
+        /// </returns>
+        /// <example>
+        /// GET: api/MenuData/ListMenu
+        /// </example>
         // GET: api/MenuData/ListMenu
         [HttpGet]   
         public IQueryable<Menu> ListMenu()
@@ -24,6 +34,19 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             return db.Menu;
         }
 
+        /// <summary>
+        /// Returns all menu in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: A menu in the system matching up to the menu ID primary key
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <param name="id">The primary key of the menu</param>
+        /// <example>
+        /// GET: api/MenuData/FindMenu/5
+        /// </example>
         // GET: api/MenuData/FindMenu/5
         [ResponseType(typeof(Menu))]
         [HttpGet]
@@ -39,6 +62,22 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             return Ok(menu);
         }
 
+        /// <summary>
+        /// Updates a particular menu in the system with POST Data input
+        /// </summary>
+        /// <param name="id">Represents the Menu ID primary key</param>
+        /// <param name="menu">JSON FORM DATA of a menu</param>
+        /// <returns>
+        /// HEADER: 204 (Success, No Content Response)
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// or
+        /// HEADER: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        /// POST: api/MenuData/UpdateMenu/5
+        /// FORM DATA: Menu JSON Object
+        /// </example>
         // POST: api/MenuData/UpdateMenu/5
         [ResponseType(typeof(void))]
         [HttpPost]
@@ -75,6 +114,20 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        /// <summary>
+        /// Adds a menu to the system
+        /// </summary>
+        /// <param name="menu">JSON FORM DATA of a menu</param>
+        /// <returns>
+        /// HEADER: 201 (Created)
+        /// CONTENT: Menu ID, Menu Data
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// </returns>
+        /// <example>
+        /// POST: api/MenuData/AddMenu
+        /// FORM DATA: Menu JSON Object
+        /// </example>
         // POST: api/MenuData/AddMenu
         [ResponseType(typeof(Menu))]
         [HttpPost]
@@ -91,6 +144,19 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             return CreatedAtRoute("DefaultApi", new { id = menu.Menu_id }, menu);
         }
 
+        /// <summary>
+        /// Deletes a menu from the system by it's ID.
+        /// </summary>
+        /// <param name="id">The primary key of the menu</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        /// POST: api/MenuData/DeleteMenu/5
+        /// FORM DATA: (empty)
+        /// </example>
         // POST: api/MenuData/DeleteMenu/5
         [ResponseType(typeof(Menu))]
         [HttpPost]

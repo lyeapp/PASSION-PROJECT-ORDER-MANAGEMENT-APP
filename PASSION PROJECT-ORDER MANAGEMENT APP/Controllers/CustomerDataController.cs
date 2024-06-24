@@ -16,13 +16,38 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
     public class CustomerDataController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        /// <summary>
+        /// Returns all customers in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all customers in the database
+        /// </returns>
+        /// <example>
+        /// GET: api/CustomerData/ListCustomers
+        /// </example>
+        
         // GET: api/CustomerData/ListCustomers
         [HttpGet]
         public IQueryable<Customer> ListCustomers()
         {
             return db.Customers;
         }
+
+
+        /// <summary>
+        /// Returns all customers in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: A customer in the system matching up to the animal ID primary key
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <param name="id">The primary key of the customer</param>
+        /// <example>
+        /// GET: api/CustomerData/FindCustomer/5
+        /// </example>
 
         // GET: api/CustomerData/FindCustomer/5
         [ResponseType(typeof(Customer))]
@@ -38,6 +63,22 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             return Ok(customer);
         }
 
+        /// <summary>
+        /// Updates a particular customer in the system with POST Data input
+        /// </summary>
+        /// <param name="id">Represents the Customer ID primary key</param>
+        /// <param name="animal">JSON FORM DATA of a customer</param>
+        /// <returns>
+        /// HEADER: 204 (Success, No Content Response)
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// or
+        /// HEADER: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        /// POST: api/CustomerData/UpdateCustomer/5
+        /// FORM DATA: Customer JSON Object
+        /// </example>
         // POST: api/CustomerData/UpdateCustomer/5
         [ResponseType(typeof(void))]
         [HttpPost]
@@ -81,6 +122,21 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        /// <summary>
+        /// Adds a customer to the system
+        /// </summary>
+        /// <param name="customer">JSON FORM DATA of a customer</param>
+        /// <returns>
+        /// HEADER: 201 (Created)
+        /// CONTENT: Customer ID,   Customer Data
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// </returns>
+        /// <example>
+        /// POST: api/CustomerData/AddCustomer
+        /// FORM DATA: Customer JSON Object
+        /// </example>
+
         // POST: api/CustomerData/AddCustomer
         [ResponseType(typeof(Customer))]
         [HttpPost]
@@ -96,6 +152,20 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = customer.Customer_id }, customer);
         }
+
+        /// <summary>
+        /// Deletes a customer from the system by it's ID.
+        /// </summary>
+        /// <param name="id">The primary key of the customer</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        /// POST: api/CustomerData/DeleteCustomer/5
+        /// FORM DATA: (empty)
+        /// </example>
 
         // POST: api/CustomerData/DeleteCustomer/5
         [ResponseType(typeof(Customer))]
