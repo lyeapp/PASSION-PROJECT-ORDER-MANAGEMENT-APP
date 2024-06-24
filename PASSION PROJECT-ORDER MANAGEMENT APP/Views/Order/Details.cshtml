@@ -1,7 +1,94 @@
-﻿
+﻿@model PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models.OrderDto
+
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "View";
+    var backgroundImagePath = Url.Content("~/Content/Images/Location/cake.jpg");
 }
 
-<h2>Details</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-image: url('@backgroundImagePath');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .content {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            margin: 50px auto;
+            max-width: 600px;
+        }
+
+        h2 {
+            color: ghostwhite;
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 5px;
+            font-size: 16px;
+            color: #fff;
+            
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-update {
+            background-color: lightseagreen;
+        }
+
+        .btn-delete {
+            background-color: lightcoral;
+        }
+
+        .btn-back {
+            background-color: sandybrown;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .detail {
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <a href="/Order/List" class="btn btn-back">Go back to list</a>
+    <div class="content">
+        <h2>@Model.Order_id</h2>
+        <div class="detail">@Model.Customer_Name</div>
+        <div class="detail">@Model.Location</div>
+        <div class="detail">@Model.Order_Date</div>
+        <div class="detail">@Model.Menu_Name</div>
+        <div class="detail">@Model.Quantity</div>
+        <div class="detail">$@Model.Total_Price</div>
+
+        <a href="/Order/Edit/@Model.Order_id" class="btn btn-update">Update</a>
+        <a style="color: #ab2020;" href="/Order/DeleteConfirm/@Model.Order_id" class="btn btn-delete">Delete</a>
+    </div>
+</body>
+</html>
+
 

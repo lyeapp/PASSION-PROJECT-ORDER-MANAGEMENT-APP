@@ -53,7 +53,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             Debug.WriteLine(response.StatusCode);
 
             Customer selectedcustomer = response.Content.ReadAsAsync<Customer>().Result;
-            Debug.WriteLine("animal received : ");
+            Debug.WriteLine("menu received : ");
             Debug.WriteLine(selectedcustomer.Customer_Name);
             return View(selectedcustomer);
         }

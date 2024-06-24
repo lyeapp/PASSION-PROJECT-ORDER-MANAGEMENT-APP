@@ -10,7 +10,6 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models;
 using System.Diagnostics;
-using PASSION_PROJECT_ORDER_MANAGEMENT_APP.Migrations;
 
 namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
 {
@@ -47,16 +46,11 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
         {
             if (!ModelState.IsValid)
             {
-                Debug.WriteLine("I have reached the update MENU method!");
-                Debug.WriteLine("Model State is invalid");
                 return BadRequest(ModelState);
             }
 
             if (id != menu.Menu_id)
             {
-                Debug.WriteLine("ID mismatch");
-                Debug.WriteLine("GET parameter" + id);
-                Debug.WriteLine("POST parameter" + menu.Menu_id);
                 return BadRequest();
             }
 
@@ -70,7 +64,6 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             {
                 if (!MenuExists(id))
                 {
-                    Debug.WriteLine("Menu not found");
                     return NotFound();
                 }
                 else
@@ -78,7 +71,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
                     throw;
                 }
             }
-            Debug.WriteLine("None of the conditions triggered");
+
             return StatusCode(HttpStatusCode.NoContent);
         }
 

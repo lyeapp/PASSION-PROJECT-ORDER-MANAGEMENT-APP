@@ -1,14 +1,89 @@
 ﻿@model IEnumerable<PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models.Menu>
 @{
     ViewBag.Title = "List";
+    var backgroundImagePath = Url.Content("~/Content/Images/Location/cake.jpg"); 
 }
 
-<h2>List</h2>
-@foreach (var menu in Model)
-{
-    <h2><a href="/Menu/Details/@menu.Menu_id">@menu.Menu_Name</a></h2>
-    <div>@menu.Menu_Price</div>
-}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-image: url('@backgroundImagePath');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        h2 {
+            color: ghostwhite;
+        }
+        .new {
+            background-color: sandybrown;
+            text-decoration: none;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+            .new:hover {
+                text-decoration: none;
+                color: yellow;
+            }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        a {
+            text-decoration: none;
+            color: dimgrey;
+        }
+            a:hover {
+                color: yellow;
+                text-decoration: underline;
+            }
+     
+            
+    </style>
+</head>
+<body>
+    <h2>List</h2>
+    <a class="new" href="/Menu/New">Add New Menu</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Menu Name</th>
+                <th>Menu Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var menu in Model)
+            {
+                <tr>
+                    <td><h2><a href="/Menu/Details/@menu.Menu_id">@menu.Menu_Name</a></h2></td>
+                    <td>@menu.Menu_Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
 
 
 

@@ -1,7 +1,131 @@
 ﻿
 @{
-    ViewBag.Title = "New";
+    ViewBag.Title = "Create";
+    var backgroundImagePath = Url.Content("~/Content/Images/Location/cake.jpg");
 }
 
-<h2>New</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-image: url('@backgroundImagePath');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: ghostwhite;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 80%;
+            margin: auto;
+        }
+
+        label {
+            color: ghostwhite;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="datetime"] {
+            width: calc(100% - 22px); 
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: sandybrown;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: wheat;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="datetime"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        .btn-back {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-right: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: sandybrown;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <a href="/Order/List" class="btn btn-back">Go back to list</a>
+    <form action="/Order/Create" method="POST">
+        <h2>New Order Please</h2>
+
+        <div>
+            <label>Customer ID:</label>
+            <input type="number" name="Customer_id" />
+        </div>
+
+        <div>
+            <label>Menu ID:</label>
+            <input type="number" name="Menu_id" />
+        </div>
+
+        <div>
+            <label>Quantity:</label>
+            <input type="number" name="Quantity" />
+        </div>
+
+        <div>
+            <label>Location:</label>
+            <input type="text" name="Location" />
+        </div>
+
+        <div>
+            <label>Order Date:</label>
+            <input type="datetime" name="Order_Date" />
+        </div>
+
+        <div>
+            <label>Total Price:</label>
+            <input type="number" name="Total_Price" />
+        </div>
+
+        <div>
+            <input type="submit" value="Create" />
+        </div>
+    </form>
+</body>
+</html>
+
 

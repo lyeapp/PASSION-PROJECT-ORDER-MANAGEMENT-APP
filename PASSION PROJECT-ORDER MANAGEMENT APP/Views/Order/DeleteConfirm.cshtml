@@ -1,4 +1,4 @@
-﻿@model PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models.Menu
+﻿@model PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models.OrderDto
 
 @{
     ViewBag.Title = "DeleteConfirm";
@@ -16,13 +16,15 @@
             background-attachment: fixed;
             font-family: Arial, sans-serif;
             color: #333;
-            
+            margin: 0;
+            padding: 0;
         }
 
         h2 {
             color: ghostwhite;
-            text-align: center;
+            text-align: left;
             margin-bottom: 20px;
+            font-size: 2em; 
         }
 
         div {
@@ -48,7 +50,7 @@
             cursor: pointer;
             padding: 10px 20px;
             border-radius: 5px;
-            font-size: 1em;
+            font-size: 1.2em; 
             margin-top: 10px;
         }
 
@@ -56,6 +58,7 @@
         button:hover {
             background-color: darkred;
         }
+
         .cancel {
             background-color: sandybrown;
             text-decoration: none;
@@ -64,30 +67,30 @@
             cursor: pointer;
             padding: 10px 20px;
             border-radius: 5px;
-            font-size: 1em;
+            font-size: 1.2em; 
             margin-top: 10px;
+            display: inline-block;
         }
-        .Name{
-            font-size:30px;
+
+        .Name {
+            font-size: 1.5em; 
+            font-weight: bold;
         }
+
         .Price {
-            font-size: 20px;
+            font-size: 1.2em; 
         }
-
-
-      
     </style>
 </head>
 <body>
-    <h2>Are you sure you want to delete this menu?</h2>
-    <a class="cancel" href="/Menu/List">Cancel</a>
-    <h2>@Model.Menu_id</h2>
-    <form action="/Menu/Delete/@Model.Menu_id" method="POST">
-        <div class="Name">Name: @Model.Menu_Name</div>
-        <div class="Price">Price: @Model.Menu_Price</div>
-        
-            <button type="submit">Confirm Delete</button>
-        </form>
+    <h2>Are you sure you want to delete this order?</h2>
+    <a class="cancel" href="/Order/List">Cancel</a>
+    <h2>@Model.Order_id</h2>
+    <div class="Name">Menu Name: @Model.Menu_Name</div>
+    <div class="Name">Customer Name: @Model.Customer_Name</div>
+    <div class="Name">Order Date: @Model.Order_Date</div>
+    <form action="/Menu/Delete/@Model.Order_id" method="POST">
+        <input type="submit" value="Confirm Delete" />
+    </form>
 </body>
 </html>
-

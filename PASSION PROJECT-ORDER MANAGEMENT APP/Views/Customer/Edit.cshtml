@@ -1,42 +1,136 @@
 ﻿
 
-﻿@model PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models.Customer
+@model PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models.Customer
 
 @{
     ViewBag.Title = "Edit";
+    var backgroundImagePath = Url.Content("~/Content/Images/Location/cake.jpg");
 }
 
-<h2>Update Customer</h2>
-<form action="/Customer/Update/@Model.Customer_id" method="POST">
-    <div style="display:none;">
-        @* Pass through the customer ID *@
-        <input type="text" name="Customer_id" value="@Model.Customer_id" />
-    </div>
-    <div>
-        <label>Name:</label> <input type="text" name="Customer_Name" value="@Model.Customer_Name" />
-    </div>
-    <div>
-        <label>Username</label> <input type="text" name="Username" value="@Model.Username" />
-    </div>
-    <div>
-        <label>Password</label> <input type="text" name="Password" value="@Model.Password" />
-    </div>
-    <div>
-        <label>Address:</label> <input type="text" name="Address" value="@Model.Address" />
-    </div>
-    <div>
-        <label>Phone_no</label> <input type="number" name="Phone_no" value="@Model.Phone_no" />
-    </div>
-    <div>
-        <label>Email</label> <input type="text" name="Email" value="@Model.Email" />
-    </div>
-    <div>
-        <label>Date</label> <input type="datetime" name="Registration_date" value="@Model.Registration_date" />
-    </div>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-image: url('@backgroundImagePath');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
 
-    <div>
-        <input type="submit" value="Update " />
+        h2 {
+            color: ghostwhite;
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    </div>
-</form>
+        form {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 80%;
+            margin: auto;
+        }
+
+        label {
+            color: ghostwhite;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="datetime"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: sandybrown;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: wheat;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="datetime"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        .cancel {
+            background-color: sandybrown;
+            text-decoration: none;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.2em; 
+            margin-top: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    
+    <a class="cancel" href="/Customer/List">Cancel</a>
+    <form action="/Customer/Update/@Model.Customer_id" method="POST">
+        <h2>Update Customer</h2>
+        <div style="display:none;">
+            <input type="text" name="Customer_id" value="@Model.Customer_id" />
+        </div>
+        <div>
+            <label>Name:</label>
+            <input type="text" name="Customer_Name" value="@Model.Customer_Name" />
+        </div>
+        <div>
+            <label>Username:</label>
+            <input type="text" name="Username" value="@Model.Username" />
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="text" name="Password" value="@Model.Password" />
+        </div>
+        <div>
+            <label>Address:</label>
+            <input type="text" name="Address" value="@Model.Address" />
+        </div>
+        <div>
+            <label>Phone No:</label>
+            <input type="number" name="Phone_no" value="@Model.Phone_no" />
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="text" name="Email" value="@Model.Email" />
+        </div>
+        <div>
+            <label>Date:</label>
+            <input type="datetime" name="Registration_date" value="@Model.Registration_date" />
+        </div>
+
+        <div>
+            <input type="submit" value="Update" />
+        </div>
+    </form>
+</body>
+</html>
+
 

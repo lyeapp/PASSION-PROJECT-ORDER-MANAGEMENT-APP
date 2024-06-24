@@ -307,11 +307,12 @@
     <Content Include="Views\Order\New.cshtml" />
     <Content Include="Views\Customer\DeleteConfirm.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
-    <Content Include="Views\Menu\DeleteConfirm.cshtml" />
-    <Content Include="Views\Menu\Edit.cshtml" />
+    <Content Include="Views\Order\DeleteConfirm.cshtml" />
+    <Content Include="Views\Order\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\Location\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

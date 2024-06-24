@@ -1,11 +1,73 @@
 ﻿@model PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models.Menu
 @{
     ViewBag.Title = "View";
+    var backgroundImagePath = Url.Content("~/Content/Images/Location/cake.jpg");
 }
-<a href="/Menu/List">Go back to list</a>
-<br />
-<a href="/Menu/Edit/@Model.Menu_id">Update</a>
-<a style="color:#ab2020;" href="/Menu/DeleteConfirm/@Model.Menu_id">Delete</a>
-<br />
-<h2>@Model.Menu_Name</h2>
-<div>$: @Model.Menu_Price</div>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+    background-image: url('@backgroundImagePath');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+        .content {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px; 
+            border-radius: 10px;
+            text-align: left;
+            
+            height: 400px;
+        }
+        h2 {
+            color: ghostwhite;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 5px;
+            font-size: 16px;
+            color: #fff;
+            background-color: lightseagreen;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-delete {
+            background-color: lightcoral;
+        }
+        .btn-back {
+            background-color: sandybrown;
+        }
+        .btn:hover {
+            opacity: 0.8;
+        }
+        h2 {
+            font-size: 60px;
+            padding: 90px 0px 0px;
+        }
+        .price {
+            font-size: 40px;
+        }
+        
+    </style>
+</head>
+<body>
+    <a href="/Menu/List" class="btn btn-back">Go back </a>
+    <div class="content">
+        
+        <h2>@Model.Menu_Name</h2>
+        <div class="price">$: @Model.Menu_Price</div>
+
+        <a href="/Menu/Edit/@Model.Menu_id" class="btn">Update</a>
+        <a href="/Menu/DeleteConfirm/@Model.Menu_id" class="btn btn-delete">Delete</a>
+    </div>
+</body>
+</html>
+

@@ -9,57 +9,53 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models;
-
+using System.Diagnostics;
 namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
 {
     public class OrderDataController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/OrderData/ListOrders
+        // GET: api/OrderData/ListOrder
         [HttpGet]
         public IEnumerable<OrderDto> ListOrders()
         {
             List<Order> Orders = db.Orders.ToList();
             List<OrderDto> OrderDtos = new List<OrderDto>();
 
-            Orders.ForEach(a => OrderDtos.Add(new OrderDto()
+            Orders.ForEach(o => OrderDtos.Add(new OrderDto()
             {
-                Order_id = a.Order_id,
-                Customer_id = a.Customer_id,
-                Menu_id = a.Menu_id,
-                Quantity = a.Quantity,
-                Location = a.Location,
-                Order_Date = a.Order_Date,
-                Total_Price = a.Total_Price,
-
-
-
+                Order_id = o.Order_id,
+                Customer_Name = o.Customer.Customer_Name,
+                Location = o.Location,
+                Order_Date = o.Order_Date,
+                Menu_Name = o.Menu.Menu_Name, 
+                Quantity = o.Quantity,
+                Total_Price = o.Total_Price,
+               
             }));
-
 
             return OrderDtos;
         }
 
-        // GET: api/OrderData/FindOrder/5
-        [ResponseType(typeof(Order))]
+        // GET: api/MenuData/FindOrder/5
+        [ResponseType(typeof(OrderDto))]
         [HttpGet]
+
         public IHttpActionResult FindOrder(int id)
         {
             Order Order = db.Orders.Find(id);
             OrderDto OrderDto = new OrderDto()
             {
                 Order_id = Order.Order_id,
-                Customer_id = Order.Customer_id,
-                Menu_id = Order.Menu_id,
-                Quantity = Order.Quantity,
+                Customer_Name = Order.Customer.Customer_Name,
                 Location = Order.Location,
                 Order_Date = Order.Order_Date,
+                Menu_Name = Order.Menu.Menu_Name,
+                Quantity = Order.Quantity,
                 Total_Price = Order.Total_Price,
 
             };
-        
-       
             if (Order == null)
             {
                 return NotFound();

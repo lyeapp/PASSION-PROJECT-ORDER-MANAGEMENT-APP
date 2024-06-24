@@ -33,7 +33,12 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models
         public int Order_id { get; set; }
         public int Customer_id { get; set; }
 
+        public string Customer_Name { get; set; }
+
         public int Menu_id { get; set; }
+
+        public string Menu_Name { get; set; }
+
         public int Quantity { get; set; }
         public string Location { get; set; }
         public DateTime Order_Date { get; set; }

@@ -1,12 +1,81 @@
 ﻿@model PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models.Customer
 @{
     ViewBag.Title = "View";
+    var backgroundImagePath = Url.Content("~/Content/Images/Location/cake.jpg");
 }
-<a href="/Customer/List">Go back to list</a>
-<br />
-<a href="/Customer/Edit/@Model.Customer_id">Update</a>
-<a style="color:#ab2020;" href="/Customer/DeleteConfirm/@Model.Customer_id">Delete</a>
-<br />
-<h2>@Model.Customer_id</h2>
-<div>address: @Model.Address</div>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-image: url('@backgroundImagePath');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .content {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            max-width: 600px;
+            width: 80%;
+            margin: auto;
+            margin-top: 40px;
+        }
+
+        h2 {
+            color: ghostwhite;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        div {
+            color: ghostwhite;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-right: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: lightseagreen;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-delete {
+            background-color: lightcoral;
+        }
+
+        .btn-back {
+            background-color: sandybrown;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <a href="/Customer/List" class="btn btn-back">Go back to list</a>
+    
+    <div class="content">
+        <h2>@Model.Customer_Name</h2>
+        <div>Address: @Model.Address</div>
+        <a href="/Customer/Edit/@Model.Customer_id" class="btn">Update</a>
+        <a  href="/Customer/DeleteConfirm/@Model.Customer_id" class="btn btn-delete">Delete</a>
+    </div>
+</body>
+</html>
 
