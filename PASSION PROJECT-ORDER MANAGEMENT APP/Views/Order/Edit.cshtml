@@ -93,37 +93,37 @@
     <form action="/Order/Update/@Model.Order_id" method="POST">
         <h2>Update Order</h2>
         <div style="display:none;">
-            <input type="number" name="Order_id" value="@Model.Order_id" />
+            <input type="number" name="Order_id" value="@Model.Order_id" required/>
         </div>
 
         <div>
             <label>Customer ID:</label>
-            <input type="number" name="Customer_id" value="@Model.Customer_id" />
+            <input type="number" name="Customer_id" value="@Model.Customer_id" required/>
         </div>
 
         <div>
             <label>Menu ID:</label>
-            <input type="number" name="Menu_id" value="@Model.Menu_id" />
+            <input type="number" name="Menu_id" value="@Model.Menu_id" required/>
         </div>
 
         <div>
             <label>Quantity:</label>
-            <input type="text" name="Quantity" value="@Model.Quantity" />
+            <input type="text" name="Quantity" value="@Model.Quantity" required/>
         </div>
 
         <div>
             <label>Location:</label>
-            <input type="text" name="Location" value="@Model.Location" />
+            <input type="text" name="Location" value="@Model.Location" required/>
         </div>
 
         <div>
             <label>Order Date:</label>
-            <input type="datetime" name="Order_Date" value="@Model.Order_Date" />
+            <input type="datetime" name="Order_Date" value="@Model.Order_Date" required/>
         </div>
 
         <div>
             <label>Total Price:</label>
-            <input type="number" name="Total_Price" value="@Model.Total_Price" />
+            <input type="number" name="Total_Price" value="@Model.Total_Price" required/>
         </div>
 
         <div>

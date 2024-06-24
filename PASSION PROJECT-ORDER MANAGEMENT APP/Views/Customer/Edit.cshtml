@@ -95,35 +95,36 @@
     <form action="/Customer/Update/@Model.Customer_id" method="POST">
         <h2>Update Customer</h2>
         <div style="display:none;">
-            <input type="text" name="Customer_id" value="@Model.Customer_id" />
+            <input type="text" name="Customer_id" value="@Model.Customer_id" required />
         </div>
         <div>
             <label>Name:</label>
-            <input type="text" name="Customer_Name" value="@Model.Customer_Name" />
+            <input type="text" name="Customer_Name" value="@Model.Customer_Name" required />
         </div>
         <div>
             <label>Username:</label>
-            <input type="text" name="Username" value="@Model.Username" />
+            <input type="text" name="Username" value="@Model.Username" required />
         </div>
         <div>
             <label>Password:</label>
-            <input type="text" name="Password" value="@Model.Password" />
+            <input type="text" name="Password" value="@Model.Password" required
+                   />
         </div>
         <div>
             <label>Address:</label>
-            <input type="text" name="Address" value="@Model.Address" />
+            <input type="text" name="Address" value="@Model.Address" required/>
         </div>
         <div>
             <label>Phone No:</label>
-            <input type="number" name="Phone_no" value="@Model.Phone_no" />
+            <input type="number" name="Phone_no" value="@Model.Phone_no" required />
         </div>
         <div>
             <label>Email:</label>
-            <input type="text" name="Email" value="@Model.Email" />
+            <input type="text" name="Email" value="@Model.Email" required />
         </div>
         <div>
             <label>Date:</label>
-            <input type="datetime" name="Registration_date" value="@Model.Registration_date" />
+            <input type="datetime" name="Registration_date" value="@Model.Registration_date" required />
         </div>
 
         <div>
