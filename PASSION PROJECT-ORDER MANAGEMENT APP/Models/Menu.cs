@@ -13,5 +13,12 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models
         public int Menu_id { get; set; }
         public string Menu_Name { get; set; }
         public int Menu_Price { get; set; }
-    }   
+    }
+    public class MenuDto
+    {
+        public int Menu_id { get; set; }
+        public string Menu_Name { get; set; }
+       
+
+    }
 }

@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models.OrderDto>
 @{
     ViewBag.Title = "Create";
     var backgroundImagePath = Url.Content("~/Content/Images/Location/cake.jpg");
@@ -43,8 +43,9 @@
 
         input[type="text"],
         input[type="number"],
-        input[type="datetime"] {
-            width: calc(100% - 22px); 
+        input[type="datetime"],
+        select {
+            width: calc(100% - 22px);
             padding: 10px;
             margin: 10px 0;
             border-radius: 5px;
@@ -68,10 +69,12 @@
 
         input[type="text"]:focus,
         input[type="number"]:focus,
-        input[type="datetime"]:focus {
+        input[type="datetime"]:focus,
+        select:focus {
             border-color: #4CAF50;
             outline: none;
         }
+
         .btn-back {
             display: inline-block;
             padding: 10px 20px;
@@ -93,17 +96,22 @@
 
         <div>
             <label>Customer ID:</label>
-            <input type="number" name="Customer_id"required />
+            <input type="number" name="Customer_id" required />
         </div>
 
         <div>
-            <label>Menu ID:</label>
-            <input type="number" name="Menu_id" required/>
+            <label>Menu Name:</label>
+            <select name="Menu_id" required>
+                @foreach (var menu in Model)
+                {
+                    <option value="@menu.Menu_id">@menu.Menu_Name</option>
+                }
+            </select>
         </div>
 
         <div>
             <label>Quantity:</label>
-            <input type="number" name="Quantity" required/>
+            <input type="number" name="Quantity" required />
         </div>
 
         <div>
@@ -113,12 +121,12 @@
 
         <div>
             <label>Order Date:</label>
-            <input type="datetime" name="Order_Date" required/>
+            <input type="datetime" name="Order_Date" required />
         </div>
 
         <div>
             <label>Total Price:</label>
-            <input type="number" name="Total_Price" required/>
+            <input type="number" name="Total_Price" required />
         </div>
 
         <div>
@@ -127,5 +135,6 @@
     </form>
 </body>
 </html>
+
 
 

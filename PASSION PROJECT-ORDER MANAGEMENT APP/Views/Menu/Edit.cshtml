@@ -3,6 +3,7 @@
     ViewBag.Title = "Edit";
     var backgroundImagePath = Url.Content("~/Content/Images/Location/cake.jpg");
 }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,7 @@
         }
 
         form {
-            background-color: rgba(0, 0, 0, 0.7); 
+            background-color: rgba(0, 0, 0, 0.7);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -56,28 +57,30 @@
             font-size: 1em;
         }
 
-        input[type="submit"]:hover {
-            background-color: wheat;
-        }
+            input[type="submit"]:hover {
+                background-color: wheat;
+            }
 
         input[type="text"]:focus,
         input[type="number"]:focus {
             border-color: #4CAF50;
             outline: none;
         }
+
         .cancel {
             background-color: sandybrown;
             text-decoration: none;
             color: white;
             border: none;
             cursor: pointer;
-            padding: 10px 20px ;
+            padding: 10px 20px;
             border-radius: 5px;
             font-size: 1.2em;
             margin-top: 10px;
-            margin-bottom:10px;
+            margin-bottom: 10px;
             display: inline-block;
         }
+
             .cancel:hover {
                 color: yellow;
                 text-decoration: none;
@@ -85,13 +88,13 @@
     </style>
 </head>
 <body>
-    
+
     <a class="cancel" href="/Menu/List">Cancel</a>
     <form action="/Menu/Update/@Model.Menu_id" method="POST">
         <h2>Update Menu</h2>
         <div style="display:none;">
 
-            <input type="text" name="Menu_id" value="@Model.Menu_id" required/>
+            <input type="text" name="Menu_id" value="@Model.Menu_id" required />
         </div>
 
         <div>
@@ -101,7 +104,7 @@
 
         <div>
             <label>Menu Price:</label>
-            <input type="number" name="Menu_Price" value="@Model.Menu_Price" required/>
+            <input type="number" name="Menu_Price" value="@Model.Menu_Price" required />
         </div>
 
         <div>

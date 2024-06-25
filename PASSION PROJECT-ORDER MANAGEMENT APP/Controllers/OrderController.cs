@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Diagnostics;
 using PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models;
 using System.Web.Script.Serialization;
+using PASSION_PROJECT_ORDER_MANAGEMENT_APP.Models.ViewModels;
 
 
 namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
@@ -18,7 +19,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
         static OrderController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44362/api/orderdata/");
+            client.BaseAddress = new Uri("https://localhost:44362/api/");
         }
 
         /// <summary>
@@ -54,7 +55,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             //curl https://localhost:44362/api/orderdata/listorder
 
 
-            string url = "listorders";
+            string url = "orderdata/listorders";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             //Debug.WriteLine("The response code is");
@@ -73,7 +74,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             //curl https://localhost:44362/api/orderdata/findorder{id}
 
 
-            string url = "findorder/" + id;
+            string url = "orderdata/findorder/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             Debug.WriteLine("The response code is");
@@ -87,7 +88,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
 
         public ActionResult Error()
         {
-
+       
             return View();
         }
 
@@ -95,7 +96,14 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
         [Authorize]
         public ActionResult New()
         {
-            return View();
+            //information about all menu in the system.
+            //GET api/menudata/listmenu
+
+            string url = "menudata/listmenu";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<OrderDto> MenuOptions = response.Content.ReadAsAsync<IEnumerable<OrderDto>>().Result;
+
+            return View(MenuOptions);
         }
 
         // POST: Order/Create
@@ -108,7 +116,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
             //Debug.WriteLine(order.Order_id);
             //objective:add a new order into our system using the API
             //curl -H "Content-Type:application/json" -d @order.json https://localhost:44362/api/orderdata/addorder
-            string url = "addorder";
+            string url = "orderdata/addorder";
 
             JavaScriptSerializer jss = new JavaScriptSerializer();
             string jsonpayload = jss.Serialize(order);
@@ -134,11 +142,24 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            string url = "findorder/" + id;
+            UpdateOrder ViewModel = new UpdateOrder();
+
+            //the existing order information
+            string url = "orderdata/findorder/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             OrderDto selectedorder = response.Content.ReadAsAsync<OrderDto>().Result;
+            ViewModel.SelectedOrder = selectedorder;
 
-            return View(selectedorder);
+
+            // all menu to choose from when updating this order
+            
+            url = "menudata/listmenu/";
+            response = client.GetAsync(url).Result;
+            IEnumerable<MenuDto> MenuOptions = response.Content.ReadAsAsync<IEnumerable<MenuDto>>().Result;
+
+            ViewModel.MenuOptions = MenuOptions;
+
+            return View(ViewModel);
         }
 
         // POST: Order/Update/5
@@ -147,7 +168,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
         public ActionResult Update(int id, Order order)
         {
             GetApplicationCookie();//get token credentials
-            string url = "UpdateOrder/" + id;
+            string url = "orderdata/UpdateOrder/" + id;
 
 
             string jsonpayload = jss.Serialize(order);
@@ -172,7 +193,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
         [Authorize]
         public ActionResult DeleteConfirm(int id)
         {
-            string url = "findorder/" + id;
+            string url = "orderdata/findorder/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             OrderDto selectedorder = response.Content.ReadAsAsync<OrderDto>().Result;
             return View(selectedorder);
@@ -184,7 +205,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
         public ActionResult Delete(int id)
         {
             GetApplicationCookie();//get token credentials
-            string url = "deletemenu/" + id;
+            string url = "orderdata/deleteorder/" + id;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;
