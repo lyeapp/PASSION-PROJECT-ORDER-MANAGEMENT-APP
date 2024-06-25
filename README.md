@@ -19,6 +19,9 @@ This application aims to streamline the ordering process, reduce errors, and enh
 - **Menu Data Management:** Allows to read,write ,update and delete menu information.Also the customers can view different menu.
 - **Menu Data Management:** Allows to read,write ,update and delete order information.Also the customers can make orders online.
 
+## Additonal Feature
+- **User Authentication:** Provides secure access control for all functionalities, ensuring authorized users can add, update, and delete customer data, menu information, and orders securely.
+
 ### Features to Explore in the Future
 - **Image Upload Feature:** I would like to add a feature to upload the images of each menu so that customers can easily identify the product.
 - **Notification System:** Sends notifications to managers regarding an order confirmations or cancellations.
