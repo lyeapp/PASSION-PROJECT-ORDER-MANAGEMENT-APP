@@ -131,6 +131,7 @@ namespace PASSION_PROJECT_ORDER_MANAGEMENT_APP.Controllers
         // POST: api/MenuData/AddMenu
         [ResponseType(typeof(Menu))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult AddMenu(Menu menu)
         {
             if (!ModelState.IsValid)
